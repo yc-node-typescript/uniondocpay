@@ -1,6 +1,11 @@
 import * as moment from 'moment';
 import { Uniondocpay } from '../src';
-import { debugapi_mpReq, debugapi_netpayRouteServer, debugapi_noCardReq, debugapi_qrReq } from '../src/apis';
+import {
+  debugapi_mpReq,
+  debugapi_netpayRouteServer,
+  debugapi_noCardReq,
+  debugapi_qrReq,
+} from '../src/apis';
 
 describe('Uniondocpay debug', () => {
   beforeAll(() => {
@@ -15,7 +20,7 @@ describe('Uniondocpay debug', () => {
       '3194',
       'fcAmtnx7MwismjWNhNKdHC44mNXtnEQeJkRrhKJwyrW2ysRR',
       'http://api.midoull.com:9001/api/chinaums/webhook/mp',
-      true,
+      true
     );
 
     expect(uniondocpay.mpReqApi).toBe(debugapi_mpReq);
@@ -99,7 +104,7 @@ describe('Uniondocpay debug', () => {
       '3194',
       'fcAmtnx7MwismjWNhNKdHC44mNXtnEQeJkRrhKJwyrW2ysRR',
       'http://api.midoull.com:9001/api/chinaums/webhook/mp',
-      true,
+      true
     );
 
     expect(uniondocpay.noCardReqApi).toBe(debugapi_noCardReq);
@@ -134,7 +139,7 @@ describe('Uniondocpay debug', () => {
       '3194',
       'fcAmtnx7MwismjWNhNKdHC44mNXtnEQeJkRrhKJwyrW2ysRR',
       'http://api.midoull.com:9001/api/chinaums/webhook/mp',
-      true,
+      true
     );
 
     expect(uniondocpay.netpayRouteServerApi).toBe(debugapi_netpayRouteServer);
@@ -160,13 +165,12 @@ describe('Uniondocpay debug', () => {
         srcReserve: 'test001',
       });
       expect(qrRes).toBeTruthy();
-    } catch(e) {
+    } catch (e) {
       console.error(e);
       fail(e);
     }
-
   });
-  
+
   it('should test app', async () => {
     const uniondocpay = new Uniondocpay(
       '898340149000005',
@@ -175,7 +179,7 @@ describe('Uniondocpay debug', () => {
       '3194',
       'fcAmtnx7MwismjWNhNKdHC44mNXtnEQeJkRrhKJwyrW2ysRR',
       'http://api.midoull.com:9001/api/chinaums/webhook/mp',
-      true,
+      true
     );
 
     try {
@@ -203,10 +207,9 @@ describe('Uniondocpay debug', () => {
         srcReserve: 'test001',
       });
       expect(appUacRes).toBeTruthy();
-    } catch(e) {
+    } catch (e) {
       console.error(e);
       fail(e);
     }
-
   });
 });

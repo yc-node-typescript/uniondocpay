@@ -9,7 +9,7 @@ describe('Uniondocpay debug', () => {
       'WWW.TEST.COM',
       '3194',
       'fcAmtnx7MwismjWNhNKdHC44mNXtnEQeJkRrhKJwyrW2ysRR',
-      'http://api.midoull.com:9001/api/chinaums/webhook/mp',
+      'http://api.midoull.com:9001/api/chinaums/webhook/mp'
     );
 
     expect(uniondocpay.mpReqApi).toBe(api_mpReq);

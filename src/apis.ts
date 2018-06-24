@@ -1,5 +1,4 @@
-export const api_mpReq =
-  'https://qr.chinaums.com/netpay-portal/webpay/pay.do';
+export const api_mpReq = 'https://qr.chinaums.com/netpay-portal/webpay/pay.do';
 export const debugapi_mpReq =
   'https://qr-test2.chinaums.com/netpay-portal/webpay/pay.do';
 export const api_noCardReq =

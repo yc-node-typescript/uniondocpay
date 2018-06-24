@@ -1,7 +1,21 @@
 import * as moment from 'moment-timezone';
 import * as rp from 'request-promise';
-import { debugapi_mpReq, api_mpReq, debugapi_noCardReq, api_noCardReq, debugapi_netpayRouteServer, api_netpayRouteServer, debugapi_qrReq, api_qrReq } from "./apis";
-import { IMpReqParams, INoCardReqParams, IQueryParams, IRefundParams } from './interfaces';
+import {
+  debugapi_mpReq,
+  api_mpReq,
+  debugapi_noCardReq,
+  api_noCardReq,
+  debugapi_netpayRouteServer,
+  api_netpayRouteServer,
+  debugapi_qrReq,
+  api_qrReq,
+} from './apis';
+import {
+  IMpReqParams,
+  INoCardReqParams,
+  IQueryParams,
+  IRefundParams,
+} from './interfaces';
 import { createHash } from 'crypto';
 import { IQrReqParams } from './interfaces/IQrReqParams';
 import { IAppReqParams } from './interfaces/IAppReqParams';
@@ -31,8 +45,8 @@ export class Uniondocpay {
     private msgId: string,
     private md5: string,
     private notifyUrl: string,
-    private debug: boolean = false,
-  ) { }
+    private debug: boolean = false
+  ) {}
 
   public get mpReqApi() {
     return this.debug ? debugapi_mpReq : api_mpReq;
@@ -76,9 +90,11 @@ export class Uniondocpay {
         msgSrc: this.msgSrc,
         msgId: this.msgId,
         notifyUrl: this.notifyUrl,
-        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment
+          .tz('Asia/Shanghai')
+          .format('YYYY-MM-DD HH:mm:ss'),
       },
-      params,
+      params
     );
     reqParams.merOrderId = reqParams.msgId + reqParams.merOrderId;
     this.sign(reqParams);
@@ -122,9 +138,11 @@ export class Uniondocpay {
         msgSrc: this.msgSrc,
         msgId: this.msgId,
         notifyUrl: this.notifyUrl,
-        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment
+          .tz('Asia/Shanghai')
+          .format('YYYY-MM-DD HH:mm:ss'),
       },
-      params,
+      params
     );
     reqParams.merOrderId = reqParams.msgId + reqParams.merOrderId;
     this.sign(reqParams);
@@ -171,10 +189,15 @@ export class Uniondocpay {
         msgSrc: this.msgSrc,
         msgId: this.msgId,
         notifyUrl: this.notifyUrl,
-        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
-        qrCodeId: this.msgId + moment.tz('Asia/Shanghai').format('YYYYMMDDmmHHssSSS') + Math.floor(Math.random() * 9999),
+        requestTimestamp: moment
+          .tz('Asia/Shanghai')
+          .format('YYYY-MM-DD HH:mm:ss'),
+        qrCodeId:
+          this.msgId +
+          moment.tz('Asia/Shanghai').format('YYYYMMDDmmHHssSSS') +
+          Math.floor(Math.random() * 9999),
       },
-      params,
+      params
     );
     reqParams.billNo = reqParams.msgId + reqParams.billNo;
     this.sign(reqParams);
@@ -192,7 +215,7 @@ export class Uniondocpay {
    * import { Uniondocpay } from '@ycnt/uniondocpay';
    *
    * const uniondocpay = new Uniondocpay(...);
-   * 
+   *
    * // 支付宝支付
    * (async () => {
    *   const appAliRes = await uniondocpay.appReq({
@@ -203,7 +226,7 @@ export class Uniondocpay {
    *   });
    *   console.log(appAliRes)
    * });
-   * 
+   *
    * // 银联全渠道
    * (async () => {
    *   const appUacRes = await uniondocpay.appReq({
@@ -226,9 +249,11 @@ export class Uniondocpay {
         msgSrc: this.msgSrc,
         msgId: this.msgId,
         notifyUrl: this.notifyUrl,
-        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment
+          .tz('Asia/Shanghai')
+          .format('YYYY-MM-DD HH:mm:ss'),
       },
-      params,
+      params
     );
     reqParams.merOrderId = reqParams.msgId + reqParams.merOrderId;
     // if(reqParams.msgType === 'wx.unifiedOrder') reqParams.tradeType = 'APP';
@@ -266,9 +291,11 @@ export class Uniondocpay {
         msgType: 'query',
         msgSrc: this.msgSrc,
         msgId: this.msgId,
-        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment
+          .tz('Asia/Shanghai')
+          .format('YYYY-MM-DD HH:mm:ss'),
       },
-      params,
+      params
     );
     reqParams.merOrderId = reqParams.msgId + reqParams.merOrderId;
 
@@ -307,9 +334,11 @@ export class Uniondocpay {
         msgType: 'refund',
         msgSrc: this.msgSrc,
         msgId: this.msgId,
-        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment
+          .tz('Asia/Shanghai')
+          .format('YYYY-MM-DD HH:mm:ss'),
       },
-      params,
+      params
     );
     reqParams.merOrderId = reqParams.msgId + reqParams.merOrderId;
 
@@ -343,10 +372,11 @@ export class Uniondocpay {
     const obj = Object.assign({}, params);
     const sign = obj.sign;
     delete obj.sign;
-    const str = Object.keys(obj)
-      .sort()
-      .map(k => `${k}=${obj[k]}`)
-      .join('&') + this.md5;
+    const str =
+      Object.keys(obj)
+        .sort()
+        .map(k => `${k}=${obj[k]}`)
+        .join('&') + this.md5;
     const ss1 = createHash('md5')
       .update(str)
       .digest('hex')
@@ -357,8 +387,14 @@ export class Uniondocpay {
 
   private sign(params) {
     const str =
-      Object.keys(params).sort().map(k => `${k}=${params[k]}`).join('&') + this.md5;
-    params.sign = createHash('md5').update(str).digest('hex').toUpperCase();
+      Object.keys(params)
+        .sort()
+        .map(k => `${k}=${params[k]}`)
+        .join('&') + this.md5;
+    params.sign = createHash('md5')
+      .update(str)
+      .digest('hex')
+      .toUpperCase();
   }
 
   private async request(api: string, params: any) {

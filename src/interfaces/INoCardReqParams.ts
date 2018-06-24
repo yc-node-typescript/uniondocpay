@@ -3,7 +3,7 @@ export interface INoCardReqParams {
    * 商户订单号 6-32 商户自行生成
    */
   merOrderId: string;
-  
+
   /**
    * 支付总金额，单位分
    */
