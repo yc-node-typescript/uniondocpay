@@ -7,8 +7,6 @@ import {
   api_noCardReq,
   debugapi_netpayRouteServer,
   api_netpayRouteServer,
-  debugapi_qrReq,
-  api_qrReq,
 } from './apis';
 import {
   IMpReqParams,
