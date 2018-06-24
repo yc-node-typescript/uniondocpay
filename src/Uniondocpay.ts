@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 import * as rp from 'request-promise';
 import { debugapi_mpReq, api_mpReq, debugapi_noCardReq, api_noCardReq, debugapi_netpayRouteServer, api_netpayRouteServer, debugapi_qrReq, api_qrReq } from "./apis";
 import { IMpReqParams, INoCardReqParams, IQueryParams, IRefundParams } from './interfaces';
@@ -76,7 +76,7 @@ export class Uniondocpay {
         msgSrc: this.msgSrc,
         msgId: this.msgId,
         notifyUrl: this.notifyUrl,
-        requestTimestamp: moment().format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
       },
       params,
     );
@@ -122,7 +122,7 @@ export class Uniondocpay {
         msgSrc: this.msgSrc,
         msgId: this.msgId,
         notifyUrl: this.notifyUrl,
-        requestTimestamp: moment().format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
       },
       params,
     );
@@ -171,8 +171,8 @@ export class Uniondocpay {
         msgSrc: this.msgSrc,
         msgId: this.msgId,
         notifyUrl: this.notifyUrl,
-        requestTimestamp: moment().format('YYYY-MM-DD HH:mm:ss'),
-        qrCodeId: this.msgId + moment().format('YYYYMMDDmmHHssSSS') + Math.floor(Math.random() * 9999),
+        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
+        qrCodeId: this.msgId + moment.tz('Asia/Shanghai').format('YYYYMMDDmmHHssSSS') + Math.floor(Math.random() * 9999),
       },
       params,
     );
@@ -226,7 +226,7 @@ export class Uniondocpay {
         msgSrc: this.msgSrc,
         msgId: this.msgId,
         notifyUrl: this.notifyUrl,
-        requestTimestamp: moment().format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
       },
       params,
     );
@@ -266,7 +266,7 @@ export class Uniondocpay {
         msgType: 'query',
         msgSrc: this.msgSrc,
         msgId: this.msgId,
-        requestTimestamp: moment().format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
       },
       params,
     );
@@ -307,7 +307,7 @@ export class Uniondocpay {
         msgType: 'refund',
         msgSrc: this.msgSrc,
         msgId: this.msgId,
-        requestTimestamp: moment().format('YYYY-MM-DD HH:mm:ss'),
+        requestTimestamp: moment.tz('Asia/Shanghai').format('YYYY-MM-DD HH:mm:ss'),
       },
       params,
     );
