@@ -1,7 +1,12 @@
+import * as moment from 'moment';
 import { Uniondocpay } from '../src';
 import { debugapi_mpReq, debugapi_netpayRouteServer, debugapi_noCardReq, debugapi_qrReq } from '../src/apis';
 
 describe('Uniondocpay debug', () => {
+  beforeAll(() => {
+    moment().locale('zh-cn');
+  });
+
   it('should test mp', async () => {
     const uniondocpay = new Uniondocpay(
       '898340149000005',
