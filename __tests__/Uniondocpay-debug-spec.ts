@@ -64,7 +64,7 @@ describe('Uniondocpay debug', () => {
       });
       fail();
     } catch (e) {
-      expect(e).toBe('累计退货金额超过支付金额');
+      expect(e.message).toBe('累计退货金额超过支付金额');
     }
 
     const webhook = {
