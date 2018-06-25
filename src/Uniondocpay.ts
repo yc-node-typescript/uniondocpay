@@ -7,8 +7,6 @@ import {
   api_noCardReq,
   debugapi_netpayRouteServer,
   api_netpayRouteServer,
-  debugapi_qrReq,
-  api_qrReq,
 } from './apis';
 import {
   IMpReqParams,
@@ -409,7 +407,7 @@ export class Uniondocpay {
       json: true,
     };
     const res = await rp(api, requestOptions);
-    if (res.body.errCode !== 'SUCCESS') throw res.body.errMsg;
+    if (res.body.errCode !== 'SUCCESS') throw new Error(res.body.errMsg);
     return res.body;
   }
 }
