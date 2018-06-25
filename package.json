@@ -1,6 +1,6 @@
 {
   "name": "@ycnt/uniondocpay",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "中国银联支付SDK（非开放平台）",
   "license": "MIT",
   "repository": "https://github.com/yc-node-typescript/uniondocpay.git",
